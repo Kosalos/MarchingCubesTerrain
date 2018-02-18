@@ -1,0 +1,35 @@
+Marching Cubes Terrain
+
+A good explanation of the Marching cubes algorithm:
+http://www.cs.carleton.edu/cs_comps/0405/shape/marching_cubes.html
+
+This little app lets you paint 3D shapes via the Marching Cubes algorithm.
+The cube world dimension is 30x30x30.
+
+Using the height control widget you select a particular Y axis level of the world,
+then you paint flux levels in the companion X/Z view.
+
+Pinch the screen to control zoom, slide 1 finger to rotate, 2 fingers to translate, tap to stop rotation.
+
+All the slider boxes work the same way:
+Press and hold to either side of center to affect the parameter in the specfied direction and speed.
+
+A.  Button controls:
+Reset : set flux levels of all positions to starting values (all zero except for the 'floor')
+Smooth : a convolution is used to smooth out the flux changes between neighboring points.
+CopyDown : starting from the top level, copy flux levels to the bottom of the world.
+Change Skin : cycle through a list of textures for the mesh.
+Scroll Skin : slowly slide the texture across the mesh.
+Random Flux : randomly alter the flux levels of all the points.
+Skeleton Flux : affect flux levels in strage way
+
+B. Iso Value:   specify the flux 'cut-off' value that determines where the boundaries are drawn
+C. Brush Width: how many points are affected when you paint flux levels
+D. Ambient light level
+E. Drawing mode
+    Add :  flux levels are increased as you paint
+    Remove : flux levels are decreased as you paint.  Good for carving holds through the world.
+    Move : for changing the Y level without drawing as you go.
+F.  For those of you who aren't sick the cross-eyed 3D effect, toggle it here.
+G.  Height control.  Slide finger up/down this widget to select which point level is painted.
+H.  Paint control. Slide finger in this widget to paint flux levels.
