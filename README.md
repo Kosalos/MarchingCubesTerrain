@@ -1,11 +1,12 @@
-# Dynamical_Stereo
+# MarchingCubes Terrain
 Cross-eyed stereo rendition of Dynamical System, for others like me who can't get enough of 3D.
 
 For newer iPads.
 
-Point clouds look beautiful in 3D, even cross-eyed 3D.
+This little app lets you paint 3D shapes via the Marching Cubes algorithm.
+The cube world dimension is 30x30x30.
 
-This little app demonstrates Swift interacting with Metal compute and render shaders,
-using Metal to build the list of vertices to draw.
+Using the height control widget you select a particular Y axis level of the world,
+then you paint flux levels in the companion X/Z view.
 
 ![Screenshot](screenshot.png)
