@@ -1,5 +1,5 @@
 # MarchingCubes Terrain
-Cross-eyed stereo rendition of Dynamical System, for others like me who can't get enough of 3D.
+Cross-eyed stereo rendition of the Marching Cubes algorithm, for others like me who can't get enough of 3D.
 
 For newer iPads.
 
