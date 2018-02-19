@@ -19,7 +19,7 @@ class PanView: UIView {
             xp = CGFloat(x) * CGFloat(HOP)
             
             for z in 0 ..< GSIZE {
-                zp = CGFloat(z) * CGFloat(HOP)
+                zp = CGFloat(GSIZE - 1 - z) * CGFloat(HOP)
                 
                 idx = x + cursor.y * GSY + z * GSZ
                 
@@ -38,8 +38,8 @@ class PanView: UIView {
     var panTouchDown = Bool(false)
     
     func updateCursor(_ rx:CGFloat, _ rz:CGFloat) {
-        var x = Int(CGFloat(GSIZE) * rx)
-        var z = Int(CGFloat(GSIZE) * rz)
+        var x:Int = Int(CGFloat(GSIZE) * rx)
+        var z:Int = GSIZE - Int(CGFloat(GSIZE) * rz)
     
         if x < 1 { x = 1} else if x >= GSIZE-1 { x = GSIZE-2 }
         if z < 1 { z = 1} else if z >= GSIZE-1 { z = GSIZE-2 }
