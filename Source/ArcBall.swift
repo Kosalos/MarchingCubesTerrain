@@ -18,14 +18,18 @@ class ArcBall {
     func initialize(_ newWidth:Float, _ newHeight:Float) {
         width = newWidth
         height = newHeight
+        adjustWidth  = 1 / ((newWidth  - 1) * 0.5)
+        adjustHeight = 1 / ((newHeight - 1) * 0.5)
+        reset()
+    }
+
+    func reset() {
         transformMatrix = float4x4(diagonal:[1,1,1,1])
         startPosition = matrix3fSetIdentity()
         endPosition = matrix3fSetIdentity()
         transformMatrix = copyMatrixToQuaternion(transformMatrix,endPosition)
-        adjustWidth  = 1 / ((newWidth  - 1) * 0.5)
-        adjustHeight = 1 / ((newHeight - 1) * 0.5)
     }
-
+    
     func quaternionToMatrix(_ q1:float4) -> float3x3 {
         let n:Float = (q1.x * q1.x) + (q1.y * q1.y) + (q1.z * q1.z) + (q1.w * q1.w)
         let s:Float = (n > 0) ? (2 / n) : 0

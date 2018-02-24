@@ -80,7 +80,7 @@ class Blob {
         cursor.x = GSIZE / 2
         cursor.z = GSIZE / 2
         cursor.y = GSIZE / 2
-    
+        
         initializeNodeStorage()
         control.mode = MODE_ADD
         isDirty = true
@@ -98,15 +98,15 @@ class Blob {
     //MARK: -
     
     var oldGrid = Array(repeating:TVertex(), count:GTOTAL)
-
+    
     func smoothPressed() {
         for i in 0 ..< GTOTAL { oldGrid[i] = grid[i] }
-    
+        
         for z in 1 ..< GSIZE-1 {
             for y in 1 ..< GSIZE-1 {
                 for x in 1 ..< GSIZE-1 {
                     var total = Float()
-    
+                    
                     // 3x3x3 grid of nodes surrounding current position
                     for zz in z-1 ... z+1 {
                         for yy in y-1 ... y+1 {
@@ -119,7 +119,7 @@ class Blob {
                     
                     let index = nodeIndex(x,y,z)
                     total += oldGrid[index].flux * 8  // biased to current value
-    
+                    
                     grid[index].flux = total / Float(27 + 8)
                     
                     if grid[index].flux < 0 {
@@ -141,7 +141,7 @@ class Blob {
         for x in 1 ..< GSIZE-1 {
             for z in 1 ..< GSIZE-1 {
                 var highFlux = Float()
-    
+                
                 for y in stride(from:GSIZE-1, to: 0, by: -1) {
                     let index = nodeIndex(x,y,z)
                     
@@ -158,16 +158,16 @@ class Blob {
         isDirty = true
     }
     
-//    func debug() {
-//        let gg = Float(GSIZE)
-//        for i in 0 ..< control.tCount {
-//            let g = tri[Int(i)]
-//            if fabs(g.pos.x) > gg || fabs(g.pos.y) > gg || fabs(g.pos.z) > gg {
-//                let str = String(format:"%3d: Pos %7.3f, %7.3f, %7.3f   Flux: %7.3f", i,g.pos.x,g.pos.y,g.pos.z, g.flux)
-//                Swift.print(str)
-//            }
-//        }
-//    }
+    //    func debug() {
+    //        let gg = Float(GSIZE)
+    //        for i in 0 ..< control.tCount {
+    //            let g = tri[Int(i)]
+    //            if fabs(g.pos.x) > gg || fabs(g.pos.y) > gg || fabs(g.pos.z) > gg {
+    //                let str = String(format:"%3d: Pos %7.3f, %7.3f, %7.3f   Flux: %7.3f", i,g.pos.x,g.pos.y,g.pos.z, g.flux)
+    //                Swift.print(str)
+    //            }
+    //        }
+    //    }
     
     func segmentSelect(_ index:Int) {
         let mm = [ MODE_ADD,MODE_SUB,MODE_MOVE ]
@@ -189,7 +189,7 @@ class Blob {
                 }
             }
         }
-    
+        
         // ground plane
         for z in 1 ..< GSIZE-1 {
             for x in 1 ..< GSIZE-1 {
@@ -197,7 +197,7 @@ class Blob {
                 grid[index].flux = 2
             }
         }
-
+        
         updateInsideAndNormal()
     }
     
@@ -213,29 +213,34 @@ class Blob {
             func affectNodeFlux(_ x:Int, _ y:Int, _ z:Int, _ deltaFlux:Float) {
                 let index = nodeIndex(x,y,z)
                 if control.mode == MODE_ADD { grid[index].flux += deltaFlux } else
-                if control.mode == MODE_SUB { grid[index].flux -= deltaFlux }
+                    if control.mode == MODE_SUB { grid[index].flux -= deltaFlux }
                 grid[index].flux.clamp(0, MAX_FLUX)
             }
             
-            for x in 1 ..< GSIZE-1 {
-                let dx = abs(position.x - x)
-                if dx > 2 { continue }
-                let xx = Float(dx * dx)
-
-                for y in 1 ..< GSIZE-1 {
-                    let dy = abs(position.y - y)
-                    if dy > 2 { continue }
-                    let yy = Float(dy * dy)
-
-                    for z in 1 ..< GSIZE-1 {
-                        let dz = abs(position.z - z)
-                        if dz > 2 { continue }
-                        let zz = Float(dz * dz)
+            if pencilStyle {
+                grid[nodeIndex(cursor)].flux = control.isoValue * 2
+            }
+            else {
+                for x in 1 ..< GSIZE-1 {
+                    let dx = abs(position.x - x)
+                    if dx > 2 { continue }
+                    let xx = Float(dx * dx)
+                    
+                    for y in 1 ..< GSIZE-1 {
+                        let dy = abs(position.y - y)
+                        if dy > 2 { continue }
+                        let yy = Float(dy * dy)
                         
-                        let distance:Float = sqrt(xx + yy + zz) * 3
-                        if distance == 0 { continue }
-                        
-                        affectNodeFlux(x,y,z,brushWidth / distance);
+                        for z in 1 ..< GSIZE-1 {
+                            let dz = abs(position.z - z)
+                            if dz > 2 { continue }
+                            let zz = Float(dz * dz)
+                            
+                            let distance:Float = sqrt(xx + yy + zz) * 3
+                            if distance == 0 { continue }
+                            
+                            affectNodeFlux(x,y,z,brushWidth / distance);
+                        }
                     }
                 }
             }
@@ -275,31 +280,31 @@ class Blob {
     func initSkeletonData() {
         for i in 0 ..< GTOTAL {
             let v = Int(grid[i].flux * 100.0)
-
-            sineData[i] = ((v % 3) == 0) ? grid[i].flux : 0
+            
+            sineData[i] = ((v % 3) < 2) ? grid[i].flux : 0
             if sineData[i] > 0 {  sineAngle[i] = sinf(grid[i].flux * 10) }
         }
     }
-
+    
     func skeletonChange() {
         for z in 1 ..< GSIZE-1 {
             for y in 1 ..< GSIZE-1 {
                 for x in 1 ..< GSIZE-1 {
                     let index = nodeIndex(x,y,z)
                     if sineData[index] == 0 { continue }
-
+                    
                     grid[index].flux = sineData[index] + sineData[index] * sinf(sineAngle[index]) * 10
                     grid[index].flux.clamp(0, MAX_FLUX)
                     sineAngle[index] += 0.1
                 }
             }
         }
-
+        
         isDirty = true
     }
-
+    
     //MARK: -
-
+    
     func randomFluxChange() {
         for z in 1 ..< GSIZE-1 {
             for y in 0 ..< GSIZE {
@@ -308,13 +313,13 @@ class Blob {
                     
                     if grid[index].flux == 0 { continue }
                     if (Int(arc4random()) & 31) > 3 { continue }
-    
+                    
                     grid[index].flux += (Int(arc4random()) & 1) == 1 ? +0.01 : -0.01
                     grid[index].flux.clamp(0, MAX_FLUX)
                 }
             }
         }
-
+        
         isDirty = true
     }
     
@@ -346,7 +351,7 @@ class Blob {
                 let KK = Float(0.03)
                 let index = Int(control.tCount)
                 control.tCount += 1
-
+                
                 tri[index] = v
                 tri[index].nrm = nrm
                 tri[index].txt.x = v.nrm.x + v.pos.y * KK
@@ -363,7 +368,7 @@ class Blob {
             let v2 = grid[gridIndex2]
             
             if (v1.flux <= control.isoValue && v2.flux <= control.isoValue) ||  // shouldn't be here
-               (v1.flux >= control.isoValue && v2.flux >= control.isoValue) {
+                (v1.flux >= control.isoValue && v2.flux >= control.isoValue) {
                 return v1
             }
             
@@ -385,10 +390,10 @@ class Blob {
         }
         
         control.tCount = 0
-
+        
         var lookup = Int()
         var verts = Array(repeating:TVertex(), count:12)
-
+        
         for z in 0 ..< GSIZE - 1 {
             for y in 0 ..< GSIZE - 1 {
                 for x in 0 ..< GSIZE - 1 {
@@ -403,7 +408,7 @@ class Blob {
                     if grid[idx + GSX + GSZ ].inside != 0 { lookup += 32 }
                     if grid[idx + GSX             ].inside != 0 { lookup += 64 }
                     if grid[idx                   ].inside != 0 { lookup += 128 }
-    
+                    
                     if lookup > 0 && lookup < 255 {
                         let et:UInt16 = edgeTable[lookup]
                         if (et &  1) != 0   { verts[ 0] = interpolate(idx       + GSY + GSZ , idx + GSX + GSY + GSZ )}
@@ -418,7 +423,7 @@ class Blob {
                         if (et & 512) != 0  { verts[ 9] = interpolate(idx + GSX + GSY + GSZ , idx + GSX       + GSZ )}
                         if (et & 1024) != 0 { verts[10] = interpolate(idx + GSX + GSY       , idx + GSX             )}
                         if (et & 2048) != 0 { verts[11] = interpolate(idx       + GSY       , idx                   )}
-    
+                        
                         var i:Int = 0
                         while true {
                             if triTable[lookup][i] > 11 { break }
@@ -436,7 +441,7 @@ class Blob {
     
     func render(_ renderEncoder:MTLRenderCommandEncoder) {
         if vBuffer == nil { return }
-
+        
         if isDirty {
             updateInsideAndNormal()
             calcMarchingCubes()
@@ -449,6 +454,6 @@ class Blob {
             renderEncoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount:Int(control.tCount))
         }
     }
-
+    
 }
 

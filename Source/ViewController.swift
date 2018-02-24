@@ -3,6 +3,7 @@ import MetalKit
 
 var paceRotate = CGPoint()
 var timer = Timer()
+var pencilStyle:Bool = false
 var vc:ViewController!
 
 // used during development of rotated() layout routine to simulate other iPad sizes
@@ -28,6 +29,7 @@ class ViewController: UIViewController{
     @IBOutlet var panView: PanView!
     @IBOutlet var heightView: HeightView!
     
+    @IBOutlet var pencilButton: UIButton!
     @IBOutlet var resetButton: UIButton!
     @IBOutlet var stereoButton: UIButton!
     @IBOutlet var smoothButton: UIButton!
@@ -44,6 +46,17 @@ class ViewController: UIViewController{
     @IBOutlet var sAmbient: SliderView!
     
     //MARK: -
+
+    let bColors:[UIColor] = [
+        UIColor(red:0.5, green:0.5, blue:0.5, alpha:1),
+        UIColor(red:0.8, green:0.4, blue:0.0, alpha:1),
+        ]
+
+    @IBAction func pencilButtonPressed(_ sender: UIButton) {
+        pencilStyle = !pencilStyle
+        let colorIndex:Int = pencilStyle ? 1 : 0
+        sender.backgroundColor = bColors[colorIndex]
+    }
     
     @IBAction func smoothButtonPressed(_ sender: UIButton) {
         blob.smoothPressed()
@@ -56,6 +69,8 @@ class ViewController: UIViewController{
     }
     
     @IBAction func resetButtonPressed(_ sender: UIButton) {
+        translation = float3(-0.75, 4.4375, 36.0627)
+        arcBall.reset()
         blob.reset()
         modeChangeSelector.selectedSegmentIndex = 0
         panView.setNeedsDisplay()
@@ -113,7 +128,7 @@ class ViewController: UIViewController{
         super.viewDidAppear(animated)
         
         sBrushWidth.initializeFloat(&brushWidth, .direct, 0.2,2, 3, "Width")
-        sIsoValue.initializeFloat(&control.isoValue, .delta, 0.01, 1.5, 1, "Iso")
+        sIsoValue.initializeFloat(&control.isoValue, .delta, 0.01, 2.0, 1, "Iso")
         sAmbient.initializeFloat(&control.ambient, .direct, 0, 1, 1, "Ambient")
         
         resetButtonPressed(resetButton)
@@ -194,7 +209,10 @@ class ViewController: UIViewController{
         x += fw + 20
         y = by
         sIsoValue.frame     = CGRect(x:x, y:y, width:cxs, height:bys); y += bys + 20
-        sBrushWidth.frame   = CGRect(x:x, y:y, width:cxs, height:bys); y += bys + 20
+        let x2 = x
+        sBrushWidth.frame   = CGRect(x:x, y:y, width:cxs, height:bys); x += cxs+5
+        pencilButton.frame  = CGRect(x:x, y:y, width:bys, height:bys); y += bys + 20
+        x = x2
         sAmbient.frame      = CGRect(x:x, y:y, width:cxs, height:bys); y += bys + 20
         modeChangeSelector.frame = CGRect(x:x, y:y, width:cxs, height:bys); y += bys + 40; x += 20
         stereoButton.frame  = CGRect(x:x, y:y, width:cxs/2, height:bys); x += cxs/2 + 25

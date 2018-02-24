@@ -56,7 +56,7 @@ kernel void calcGridInsideAndNormal
     if(ix < 1 || iy < 1 || iz < 1) return;
     if(ix >= SGSIZE-1 || iy >= SGSIZE-1 || iz >= SGSIZE-1) return;
     
-    grid[id].inside = grid[id].flux > control.isoValue ? 1 : 0;
+    grid[id].inside = grid[id].flux >= control.isoValue ? 1 : 0;
     
     grid[id].nrm.x = grid[id - SGSIZEX].flux - grid[id + SGSIZEX].flux;
     grid[id].nrm.y = grid[id - SGSIZEY].flux - grid[id + SGSIZEY].flux;

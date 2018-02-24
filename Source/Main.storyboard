@@ -186,6 +186,19 @@
                                     <action selector="stereoButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="gkn-e8-5TQ"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mtK-qY-0B7">
+                                <rect key="frame" x="332" y="910" width="45" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <state key="normal" title="Pencil">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="pencilButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="yCI-oK-agN"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -199,6 +212,7 @@
                         <outlet property="metalViewR" destination="g30-ls-F4D" id="Cwr-XQ-w83"/>
                         <outlet property="modeChangeSelector" destination="SI3-Vp-8Wt" id="H2t-6C-T87"/>
                         <outlet property="panView" destination="a2y-Zb-NAe" id="cSt-7d-fgm"/>
+                        <outlet property="pencilButton" destination="mtK-qY-0B7" id="gDp-ql-hTI"/>
                         <outlet property="randomFluxButton" destination="gVj-lV-yiP" id="Hb8-E5-8Wt"/>
                         <outlet property="resetButton" destination="ZSe-12-93w" id="TVk-b2-mlI"/>
                         <outlet property="sAmbient" destination="Ufp-C5-lOS" id="S3a-4b-iEf"/>

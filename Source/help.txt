@@ -25,6 +25,7 @@ Skeleton Flux : affect flux levels in strage way
 
 B. Iso Value:   specify the flux 'cut-off' value that determines where the boundaries are drawn
 C. Brush Width: how many points are affected when you paint flux levels
+   When 'Pencil' is enabled you paint just 1 pixel wide.
 D. Ambient light level
 E. Drawing mode
     Add :  flux levels are increased as you paint
