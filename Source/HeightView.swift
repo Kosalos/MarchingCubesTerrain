@@ -32,7 +32,12 @@ class HeightView: UIView {
         c.y = y
         if c.y < 1 { c.y = 1 } else if c.y > GSIZE-1 { c.y = GSIZE-1 }
     
-        blob.updateCursorPosition(c,true)
+        if connectStyle {
+            blob.updateCursorPosition(c,true)
+        }
+        else {
+            cursor = c
+        }
         
         setNeedsDisplay()
         vc.panView.setNeedsDisplay()

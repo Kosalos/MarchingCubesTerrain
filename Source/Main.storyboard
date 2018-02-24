@@ -199,12 +199,26 @@
                                     <action selector="pencilButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="yCI-oK-agN"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="05P-0u-hpM">
+                                <rect key="frame" x="406" y="908" width="45" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <state key="normal" title="Ycon">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="connectButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="H79-ST-Nin"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                     </view>
                     <connections>
                         <outlet property="changeSkinButton" destination="GMa-yR-rio" id="URF-pV-TeD"/>
+                        <outlet property="connectButton" destination="05P-0u-hpM" id="vt8-HK-kka"/>
                         <outlet property="copyDownButton" destination="R63-NC-h45" id="pvK-T8-NuI"/>
                         <outlet property="heightView" destination="Hwe-Cr-J74" id="afh-dg-f2B"/>
                         <outlet property="helpButton" destination="FXP-WT-Q0Z" id="4Xc-rd-wbm"/>

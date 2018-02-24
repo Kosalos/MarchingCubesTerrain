@@ -4,6 +4,7 @@ import MetalKit
 var paceRotate = CGPoint()
 var timer = Timer()
 var pencilStyle:Bool = false
+var connectStyle:Bool = false
 var vc:ViewController!
 
 // used during development of rotated() layout routine to simulate other iPad sizes
@@ -30,6 +31,7 @@ class ViewController: UIViewController{
     @IBOutlet var heightView: HeightView!
     
     @IBOutlet var pencilButton: UIButton!
+    @IBOutlet var connectButton: UIButton!
     @IBOutlet var resetButton: UIButton!
     @IBOutlet var stereoButton: UIButton!
     @IBOutlet var smoothButton: UIButton!
@@ -55,6 +57,12 @@ class ViewController: UIViewController{
     @IBAction func pencilButtonPressed(_ sender: UIButton) {
         pencilStyle = !pencilStyle
         let colorIndex:Int = pencilStyle ? 1 : 0
+        sender.backgroundColor = bColors[colorIndex]
+    }
+    
+    @IBAction func connectButtonPressed(_ sender: UIButton) {
+        connectStyle = !connectStyle
+        let colorIndex:Int = connectStyle ? 1 : 0
         sender.backgroundColor = bColors[colorIndex]
     }
     
@@ -214,13 +222,16 @@ class ViewController: UIViewController{
         pencilButton.frame  = CGRect(x:x, y:y, width:bys, height:bys); y += bys + 20
         x = x2
         sAmbient.frame      = CGRect(x:x, y:y, width:cxs, height:bys); y += bys + 20
-        modeChangeSelector.frame = CGRect(x:x, y:y, width:cxs, height:bys); y += bys + 40; x += 20
+        let x3 = x
+        modeChangeSelector.frame = CGRect(x:x, y:y, width:cxs, height:bys); x += cxs+5
+        connectButton.frame  = CGRect(x:x, y:y, width:bys, height:bys); y += bys + 40
+        x = x3
         stereoButton.frame  = CGRect(x:x, y:y, width:cxs/2, height:bys); x += cxs/2 + 25
         helpButton.frame    = CGRect(x:x, y:y, width:cxs/2, height:bys)
-        x += cxs/2 + 20
+        x += cxs/2 + 25
         y = by
         let pv = fullHeight - 20
-        heightView.frame = CGRect(x:x, y:y, width:70, height:pv); x += 90
+        heightView.frame = CGRect(x:x, y:y, width:70, height:pv); x += 85
         panView.frame = CGRect(x:x, y:y, width:pv, height:pv)
     }
 

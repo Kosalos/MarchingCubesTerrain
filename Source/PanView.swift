@@ -31,6 +31,15 @@ class PanView: UIView {
                 UIBezierPath(rect:CGRect(x:xp, y:zp, width:CGFloat(HOP+1), height:CGFloat(HOP+1))).fill()
             }
         }
+        
+        // cursor
+        xp = CGFloat(cursor.x) * CGFloat(HOP)
+        let yp = CGFloat(GSIZE - cursor.z) * CGFloat(HOP)
+        context?.setLineWidth(2)
+        context?.setStrokeColor(UIColor.black.cgColor)
+        context?.move(to: CGPoint(x:xp, y:0)); context?.addLine(to: CGPoint(x:xp, y:bounds.size.height))
+        context?.move(to: CGPoint(x:0, y:yp)); context?.addLine(to: CGPoint(x:bounds.size.width, y:yp))
+        context?.strokePath()
     }
     
     // MARK: Touch --------------------------

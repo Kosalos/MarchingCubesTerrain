@@ -25,12 +25,17 @@ Skeleton Flux : affect flux levels in strage way
 
 B. Iso Value:   specify the flux 'cut-off' value that determines where the boundaries are drawn
 C. Brush Width: how many points are affected when you paint flux levels
+
    When 'Pencil' is enabled you paint just 1 pixel wide.
+
 D. Ambient light level
 E. Drawing mode
     Add :  flux levels are increased as you paint
     Remove : flux levels are decreased as you paint.  Good for carving holds through the world.
     Move : for changing the Y level without drawing as you go.
+
+    The 'Ycon' button controls whether you paint as you change Y axis levels.
+
 F.  For those of you who aren't sick the cross-eyed 3D effect, toggle it here.
 G.  Height control.  Slide finger up/down this widget to select which point level is painted.
 H.  Paint control. Slide finger in this widget to paint flux levels.

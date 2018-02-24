@@ -218,7 +218,8 @@ class Blob {
             }
             
             if pencilStyle {
-                grid[nodeIndex(cursor)].flux = control.isoValue * 2
+                if control.mode == MODE_ADD { grid[nodeIndex(cursor)].flux = control.isoValue * 2 } else
+                if control.mode == MODE_SUB { grid[nodeIndex(cursor)].flux = 0 }
             }
             else {
                 for x in 1 ..< GSIZE-1 {

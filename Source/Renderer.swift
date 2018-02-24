@@ -169,11 +169,19 @@ class Renderer: NSObject, MTKViewDelegate {
             * translate(translation.x,translation.y,translation.z)
             * rotate(stereoAngle,float3(0,1,0))
             * arcBall.transformMatrix
+
+        // roving light style
+        // lightpos.x = sinf(lAngle) * 70
+        // lightpos.y = 70
+        // lightpos.z = cosf(lAngle) * 70
+        // lAngle += 0.002
         
-        lightpos.x = sinf(lAngle) * 70
-        lightpos.y = 70
-        lightpos.z = cosf(lAngle) * 70
-        lAngle += 0.002
+        // light follows cursor
+        let gs = -Float(GSIZE/2)
+        lightpos.x = Float(cursor.x) + gs
+        lightpos.y = Float(cursor.y) + gs
+        lightpos.z = Float(cursor.z) + gs
+        
         constant_buffer[0].light = normalize(lightpos)
         constant_buffer[0].ambient = control.ambient
         
