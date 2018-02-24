@@ -207,32 +207,39 @@ class ViewController: UIViewController{
         var x:CGFloat = left
         let yhop:CGFloat = bys + 5
         let fw:CGFloat = 120
-        resetButton.frame        = CGRect(x:x, y:y, width:fw, height:bys); y += yhop
-        smoothButton.frame       = CGRect(x:x, y:y, width:fw, height:bys); y += yhop
-        copyDownButton.frame     = CGRect(x:x, y:y, width:fw, height:bys); y += yhop
-        changeSkinButton.frame   = CGRect(x:x, y:y, width:fw, height:bys); y += yhop
-        scrollSkinButton.frame   = CGRect(x:x, y:y, width:fw, height:bys); y += yhop
-        randomFluxButton.frame   = CGRect(x:x, y:y, width:fw, height:bys); y += yhop
-        skeletonFluxButton.frame = CGRect(x:x, y:y, width:fw, height:bys)
+        
+        func frame(_ xs:CGFloat, _ ys:CGFloat, _ dx:CGFloat, _ dy:CGFloat) -> CGRect {
+            let r = CGRect(x:x, y:y, width:xs, height:ys)
+            x += dx; y += dy
+            return r
+        }
+        
+        resetButton.frame = frame(fw,bys,0,yhop)
+        smoothButton.frame = frame(fw,bys,0,yhop)
+        copyDownButton.frame = frame(fw,bys,0,yhop)
+        changeSkinButton.frame = frame(fw,bys,0,yhop)
+        scrollSkinButton.frame = frame(fw,bys,0,yhop)
+        randomFluxButton.frame = frame(fw,bys,0,yhop)
+        skeletonFluxButton.frame = frame(fw,bys,0,0)
         x += fw + 20
         y = by
-        sIsoValue.frame     = CGRect(x:x, y:y, width:cxs, height:bys); y += bys + 20
+        sIsoValue.frame = frame(cxs,bys,0,bys+20)
         let x2 = x
-        sBrushWidth.frame   = CGRect(x:x, y:y, width:cxs, height:bys); x += cxs+5
-        pencilButton.frame  = CGRect(x:x, y:y, width:bys, height:bys); y += bys + 20
+        sBrushWidth.frame = frame(cxs,bys,cxs+5,0)
+        pencilButton.frame = frame(bys,bys,0,bys+20)
         x = x2
-        sAmbient.frame      = CGRect(x:x, y:y, width:cxs, height:bys); y += bys + 20
+        sAmbient.frame = frame(cxs,bys,0,bys+20)
         let x3 = x
-        modeChangeSelector.frame = CGRect(x:x, y:y, width:cxs, height:bys); x += cxs+5
-        connectButton.frame  = CGRect(x:x, y:y, width:bys, height:bys); y += bys + 40
+        modeChangeSelector.frame = frame(cxs,bys,cxs+5,0)
+        connectButton.frame = frame(bys,bys,0,bys+40)
         x = x3
-        stereoButton.frame  = CGRect(x:x, y:y, width:cxs/2, height:bys); x += cxs/2 + 25
-        helpButton.frame    = CGRect(x:x, y:y, width:cxs/2, height:bys)
+        stereoButton.frame = frame(cxs/2,bys,cxs/2+25,0)
+        helpButton.frame = frame(cxs/2,bys,0,0)
         x += cxs/2 + 25
         y = by
         let pv = fullHeight - 20
-        heightView.frame = CGRect(x:x, y:y, width:70, height:pv); x += 85
-        panView.frame = CGRect(x:x, y:y, width:pv, height:pv)
+        heightView.frame = frame(70,pv,85,0)
+        panView.frame = frame(pv,pv,0,0)
     }
 
     override var prefersStatusBarHidden: Bool { return true }
