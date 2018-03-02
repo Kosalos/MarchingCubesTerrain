@@ -9,12 +9,12 @@
 /* Begin PBXBuildFile section */
 		1D68F0562038CC4900902AF7 /* Blob.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D68F0552038CC4900902AF7 /* Blob.swift */; };
 		1D68F0582038CD8E00902AF7 /* AAPLTransforms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D68F0572038CD8E00902AF7 /* AAPLTransforms.swift */; };
-		1D68F05A2038CD9E00902AF7 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D68F0592038CD9D00902AF7 /* Background.swift */; };
 		1D68F05C2038CDAB00902AF7 /* ColorMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D68F05B2038CDAB00902AF7 /* ColorMap.swift */; };
 		1D68F05F2038CDBB00902AF7 /* HeightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D68F05D2038CDBB00902AF7 /* HeightView.swift */; };
 		1D68F0602038CDBB00902AF7 /* PanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D68F05E2038CDBB00902AF7 /* PanView.swift */; };
 		1D68F0632038CDD200902AF7 /* ComputeShader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D68F0612038CDD200902AF7 /* ComputeShader.swift */; };
 		1D68F0642038CDD200902AF7 /* CubeTables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D68F0622038CDD200902AF7 /* CubeTables.swift */; };
+		1D6D8ADC2049AD8100027896 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6D8ADB2049AD8100027896 /* Background.swift */; };
 		1D889B3E202E1CD900A2683F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D889B3D202E1CD900A2683F /* AppDelegate.swift */; };
 		1D889B40202E1CD900A2683F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D889B3F202E1CD900A2683F /* ViewController.swift */; };
 		1D889B45202E1CD900A2683F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D889B44202E1CD900A2683F /* Assets.xcassets */; };
@@ -31,12 +31,12 @@
 /* Begin PBXFileReference section */
 		1D68F0552038CC4900902AF7 /* Blob.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Blob.swift; sourceTree = "<group>"; };
 		1D68F0572038CD8E00902AF7 /* AAPLTransforms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AAPLTransforms.swift; sourceTree = "<group>"; };
-		1D68F0592038CD9D00902AF7 /* Background.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Background.swift; path = ../../MarchingCubesTerrainIOS/Source/Background.swift; sourceTree = "<group>"; };
 		1D68F05B2038CDAB00902AF7 /* ColorMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorMap.swift; sourceTree = "<group>"; };
 		1D68F05D2038CDBB00902AF7 /* HeightView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeightView.swift; sourceTree = "<group>"; };
 		1D68F05E2038CDBB00902AF7 /* PanView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PanView.swift; sourceTree = "<group>"; };
 		1D68F0612038CDD200902AF7 /* ComputeShader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComputeShader.swift; sourceTree = "<group>"; };
 		1D68F0622038CDD200902AF7 /* CubeTables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CubeTables.swift; sourceTree = "<group>"; };
+		1D6D8ADB2049AD8100027896 /* Background.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
 		1D889B3A202E1CD900A2683F /* MarchingCubesTerrain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarchingCubesTerrain.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D889B3D202E1CD900A2683F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1D889B3F202E1CD900A2683F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -96,8 +96,8 @@
 				1D68F0612038CDD200902AF7 /* ComputeShader.swift */,
 				1D68F0622038CDD200902AF7 /* CubeTables.swift */,
 				1D889B5D202E1DB500A2683F /* ArcBall.swift */,
+				1D6D8ADB2049AD8100027896 /* Background.swift */,
 				1D889B5C202E1DB500A2683F /* HelpViewController.swift */,
-				1D68F0592038CD9D00902AF7 /* Background.swift */,
 				1D68F0572038CD8E00902AF7 /* AAPLTransforms.swift */,
 				1D68F05B2038CDAB00902AF7 /* ColorMap.swift */,
 				1D889B44202E1CD900A2683F /* Assets.xcassets */,
@@ -195,7 +195,7 @@
 				1D68F05F2038CDBB00902AF7 /* HeightView.swift in Sources */,
 				1D68F0642038CDD200902AF7 /* CubeTables.swift in Sources */,
 				1D889B5B202E1D9C00A2683F /* SliderView.swift in Sources */,
-				1D68F05A2038CD9E00902AF7 /* Background.swift in Sources */,
+				1D6D8ADC2049AD8100027896 /* Background.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
